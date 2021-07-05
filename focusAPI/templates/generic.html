@@ -1,0 +1,350 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Focus Analysis</title>
+	<style type="text/css">
+		.image.fit:hover img {
+			-webkit-transform: scale(1.2);
+			transform: scale(1.2);
+		}
+	</style>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="icon" href="../static/images/favicon.ico">
+	<link rel="stylesheet" href="../static/assets/css/main.css" />
+	<link rel="stylesheet" href="../static/assets/css/index.css" />
+	<noscript>
+		<link rel="stylesheet" href="../static/assets/css/noscript.css" />
+	</noscript>
+
+
+
+
+</head>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper" class="fade-in">
+
+		<!-- Intro -->
+		<div id="intro">
+			<h1>Personalized Focus Analysis Report</h1>
+			<h2 style="font-weight: bold;font-style: normal;">在线课堂专注度分析解决方案@ZUEL</h2>
+			<p>使用模糊综合评定法融合学习情绪分析模型与关键点特征计算模型<br />
+				情绪分析模型使用SqueezeNet训练卷积神经网络<br />
+				关键点特征计算模型利用Shape_Predictor模型结合面部关键点计算特征<br />
+				得到专注度得分后对专注度低时段的知识点进行补充推荐</p>
+			<ul class="actions">
+				<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+			</ul>
+		</div>
+
+		<!-- Header -->
+		<header id="header">
+			<a class="logo">Focus Analysis</a>
+		</header>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul class="links">
+				<li><a href="/">专注度曲线</a></a></li>
+				<li class="active"><a>薄弱知识点推荐列表</a></li>
+			</ul>
+
+		</nav>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Featured Post -->
+			<article class="post featured" style="padding: 4rem 3rem 1rem 4rem;">
+				<header class="major">
+					<span class="date" style="font-weight:bold;">Report</span>
+				</header>
+			</article>
+
+			<article class="post featured" style="padding: 4rem 3rem 1rem 4rem;">
+				<header class="major">
+					<p>薄弱知识点：<a style="font-weight:bold;"><text id="weak0">{{weak_knowledage[0]}}</text></a></p>
+					<h2 style="margin: 0 0 1rem 0;">推荐列表</h2>
+			</article>
+			<section class="posts">
+				<article>
+					<header>
+
+						<!-- <h2><a href="#">Sed magna<br />
+								ipsum faucibus</a></h2> -->
+						<h2 id="rec_name0">{{ data_imp[0]['data'][0]['name'] }}</h2>
+						<span class="date">
+							<span class="time-img"><img class="time-img" src="../static/images/school.png"
+									alt="" /></span>
+							<span class="school" style="margin-left:5px;" id="rec_school0">{{
+								data_imp[0]['data'][0]['school'] }}</span>
+						</span>
+						<span class="date">
+							<span class="time-img"><img class="time-img" src="../static/images/start.png"
+									alt="" /></span>
+							<span class="time" style="color:#00c758!important;margin-left:5px;" id="rec_time0">{{
+								data_imp[0]['data'][0]['time'] }}</span></span>
+					</header>
+					<div class="image fit">
+						<img class="image fit" src="{{ data_imp[0]['data'][0]['img_url'] }}" alt="" style="-webkit-transition: all 0.3s ease!important;
+						transition: all 0.3s ease!important;" />
+					</div>
+					<p>{{
+						data_imp[0]['data'][0]['intro'] }}</p>
+					<ul class="actions special">
+						<li><a href="{{ data_imp[0]['data'][0]['url'] }}" class="button" target="_blank">点我开始</a></li>
+					</ul>
+				</article>
+				<article>
+					<header>
+
+						<!-- <h2><a href="#">Sed magna<br />
+								ipsum faucibus</a></h2> -->
+						<h2>{{ data_imp[0]['data'][1]['name'] }}</h2>
+						<span class="date">
+							<span class="time-img"><img class="time-img" src="../static/images/school.png"
+									alt="" /></span>
+							<span class="school" style="margin-left:5px;">{{ data_imp[0]['data'][1]['school'] }}</span>
+						</span>
+						<span class="date">
+							<span class="time-img"><img class="time-img" src="../static/images/start.png"
+									alt="" /></span>
+							<span class="time" style="color:#00c758!important;margin-left:5px;">{{
+								data_imp[0]['data'][1]['time'] }}</span></span>
+					</header>
+					<div class="image fit">
+						<img class="image fit" src="{{ data_imp[0]['data'][1]['img_url'] }}" alt="" style="-webkit-transition: all 0.3s ease!important;
+						transition: all 0.3s ease!important;" />
+					</div>
+					<p>{{ data_imp[0]['data'][1]['intro'] }}</p>
+					<ul class="actions special">
+						<li><a href="{{ data_imp[0]['data'][1]['url'] }}" class="button" target="_blank">点我开始</a></li>
+					</ul>
+				</article>
+				<article>
+					<header>
+
+						<!-- <h2><a href="#">Sed magna<br />
+								ipsum faucibus</a></h2> -->
+						<h2>{{ data_imp[0]['data'][2]['name'] }}</h2>
+						<span class="date">
+							<span class="time-img"><img class="time-img" src="../static/images/school.png"
+									alt="" /></span>
+							<span class="school" style="margin-left:5px;">{{ data_imp[0]['data'][2]['school'] }}</span>
+						</span>
+						<span class="date">
+							<span class="time-img"><img class="time-img" src="../static/images/start.png"
+									alt="" /></span>
+							<span class="time" style="color:#00c758!important;margin-left:5px;">{{
+								data_imp[0]['data'][2]['time'] }}</span></span>
+					</header>
+					<div class="image fit">
+						<img class="image fit" src="{{ data_imp[0]['data'][2]['img_url'] }}" alt="" style="-webkit-transition: all 0.3s ease!important;
+						transition: all 0.3s ease!important;" />
+					</div>
+					<p>{{ data_imp[0]['data'][2]['intro'] }}</p>
+					<ul class="actions special">
+						<li><a href="{{ data_imp[0]['data'][2]['url'] }}" class="button" target="_blank">点我开始</a></li>
+					</ul>
+				</article>
+				<article>
+					<header>
+
+						<!-- <h2><a href="#">Sed magna<br />
+								ipsum faucibus</a></h2> -->
+						<h2>{{ data_imp[0]['data'][3]['name'] }}</h2>
+						<span class="date">
+							<span class="time-img"><img class="time-img" src="../static/images/school.png"
+									alt="" /></span>
+							<span class="school" style="margin-left:5px;">{{ data_imp[0]['data'][3]['school'] }}</span>
+						</span>
+						<span class="date">
+							<span class="time-img"><img class="time-img" src="../static/images/start.png"
+									alt="" /></span>
+							<span class="time" style="color:#00c758!important;margin-left:5px;">{{
+								data_imp[0]['data'][3]['time'] }}</span></span>
+					</header>
+					<div class="image fit">
+						<img class="image fit" src="{{ data_imp[0]['data'][3]['img_url'] }}" alt="" style="-webkit-transition: all 0.3s ease!important;
+						transition: all 0.3s ease!important;" />
+					</div>
+					<p>{{data_imp[0]['data'][3]['intro'] }}</p>
+					<ul class="actions special">
+						<li><a href="{{ data_imp[0]['data'][3]['url'] }}" class="button" target="_blank">点我开始</a></li>
+					</ul>
+				</article>
+			</section>
+
+			<article class="post featured" style="padding: 4rem 3rem 1rem 4rem;">
+				<header class="major">
+					<p>薄弱知识点：<a style="font-weight:bold;"><text id="weak1">{{weak_knowledage[1]}}</text></a></p>
+					<h2 style="margin: 0 0 1rem 0;">推荐列表</h2>
+			</article>
+			<section class="posts">
+				<article>
+					<header>
+
+						<!-- <h2><a href="#">Sed magna<br />
+								ipsum faucibus</a></h2> -->
+						<h2 id="rec_name0">{{ data_imp[1]['data'][0]['name'] }}</h2>
+						<span class="date">
+							<span class="time-img"><img class="time-img" src="../static/images/school.png"
+									alt="" /></span>
+							<span class="school" style="margin-left:5px;" id="rec_school0">{{
+								data_imp[1]['data'][0]['school'] }}</span>
+						</span>
+						<span class="date">
+							<span class="time-img"><img class="time-img" src="../static/images/start.png"
+									alt="" /></span>
+							<span class="time" style="color:#00c758!important;margin-left:5px;" id="rec_time0">{{
+								data_imp[1]['data'][0]['time'] }}</span></span>
+					</header>
+					<div class="image fit">
+						<img class="image fit" src="{{ data_imp[0]['data'][0]['img_url'] }}" alt="" style="-webkit-transition: all 0.3s ease!important;
+						transition: all 0.3s ease!important;" />
+					</div>
+					<p>{{
+						data_imp[1]['data'][0]['intro'] }}</p>
+					<ul class="actions special">
+						<li><a href="{{ data_imp[0]['data'][0]['url'] }}" class="button" target="_blank">点我开始</a></li>
+					</ul>
+				</article>
+				<article>
+					<header>
+
+						<!-- <h2><a href="#">Sed magna<br />
+								ipsum faucibus</a></h2> -->
+						<h2>{{ data_imp[1]['data'][1]['name'] }}</h2>
+						<span class="date">
+							<span class="time-img"><img class="time-img" src="../static/images/school.png"
+									alt="" /></span>
+							<span class="school" style="margin-left:5px;">{{ data_imp[1]['data'][1]['school'] }}</span>
+						</span>
+						<span class="date">
+							<span class="time-img"><img class="time-img" src="../static/images/start.png"
+									alt="" /></span>
+							<span class="time" style="color:#00c758!important;margin-left:5px;">{{
+								data_imp[1]['data'][1]['time'] }}</span></span>
+					</header>
+					<div class="image fit">
+						<img class="image fit" src="{{ data_imp[0]['data'][1]['img_url'] }}" alt="" style="-webkit-transition: all 0.3s ease!important;
+						transition: all 0.3s ease!important;" />
+					</div>
+					<p>{{ data_imp[1]['data'][1]['intro'] }}</p>
+					<ul class="actions special">
+						<li><a href="{{ data_imp[0]['data'][1]['url'] }}" class="button" target="_blank">点我开始</a></li>
+					</ul>
+				</article>
+				<article>
+					<header>
+
+						<!-- <h2><a href="#">Sed magna<br />
+								ipsum faucibus</a></h2> -->
+						<h2>{{ data_imp[1]['data'][2]['name'] }}</h2>
+						<span class="date">
+							<span class="time-img"><img class="time-img" src="../static/images/school.png"
+									alt="" /></span>
+							<span class="school" style="margin-left:5px;">{{ data_imp[1]['data'][2]['school'] }}</span>
+						</span>
+						<span class="date">
+							<span class="time-img"><img class="time-img" src="../static/images/start.png"
+									alt="" /></span>
+							<span class="time" style="color:#00c758!important;margin-left:5px;">{{
+								data_imp[1]['data'][2]['time'] }}</span></span>
+					</header>
+					<div class="image fit">
+						<img class="image fit" src="{{ data_imp[0]['data'][2]['img_url'] }}" alt="" style="-webkit-transition: all 0.3s ease!important;
+						transition: all 0.3s ease!important;" />
+					</div>
+					<p>{{ data_imp[1]['data'][2]['intro'] }}</p>
+					<ul class="actions special">
+						<li><a href="{{ data_imp[0]['data'][2]['url'] }}" class="button" target="_blank">点我开始</a></li>
+					</ul>
+				</article>
+				<article>
+					<header>
+
+						<!-- <h2><a href="#">Sed magna<br />
+								ipsum faucibus</a></h2> -->
+						<h2>{{ data_imp[1]['data'][3]['name'] }}</h2>
+						<span class="date">
+							<span class="time-img"><img class="time-img" src="../static/images/school.png"
+									alt="" /></span>
+							<span class="school" style="margin-left:5px;">{{ data_imp[1]['data'][3]['school'] }}</span>
+						</span>
+						<span class="date">
+							<span class="time-img"><img class="time-img" src="../static/images/start.png"
+									alt="" /></span>
+							<span class="time" style="color:#00c758!important;margin-left:5px;">{{
+								data_imp[1]['data'][3]['time'] }}</span></span>
+					</header>
+					<div class="image fit">
+						<img class="image fit" src="{{ data_imp[0]['data'][3]['img_url'] }}" alt="" style="-webkit-transition: all 0.3s ease!important;
+						transition: all 0.3s ease!important;" />
+					</div>
+					<p>{{data_imp[1]['data'][3]['intro'] }}</p>
+					<ul class="actions special">
+						<li><a href="{{ data_imp[0]['data'][3]['url'] }}" class="button" target="_blank">点我开始</a></li>
+					</ul>
+				</article>
+			</section>
+
+
+
+
+		</div>
+
+
+
+		<!-- Copyright -->
+		<div id="copyright">
+			<ul>
+				<li>&copy; Untitled</li>
+				<li>Design: <a>Face Focus</a></li>
+			</ul>
+		</div>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../static/assets/js/jquery.min.js"></script>
+	<script src="../static/assets/js/jquery.scrollex.min.js"></script>
+	<script src="../static/assets/js/jquery.scrolly.min.js"></script>
+	<script src="../static/assets/js/browser.min.js"></script>
+	<script src="../static/assets/js/breakpoints.min.js"></script>
+	<script src="../static/assets/js/util.js"></script>
+	<script src="../static/assets/js/main.js"></script>
+	<script type="text/javascript">
+
+		// function pageSet() {
+		// 	console.log(123)
+		// 	console.log(weak_knowledage[0])
+		// 	document.getElementById('ee').value = weak_knowledage[0];
+		// 	console.log(456)
+		// }
+
+		$(document).ready(function pageSet() {
+			// var thisURL = decodeURI(location.href);
+			// var getval = thisURL.split('?')[1];
+			// var showval = getval.split("=")[1];
+			// var weak_knowledage = showval.split(",");
+			// console.log(weak_knowledage)
+			// //    document.getElementById("你要赋值的控件ID").value=你需要赋的值;
+		
+
+		});
+
+	</script>
+
+</body>
+
+</html>

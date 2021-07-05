@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Focus Analysis</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="icon" href="../static/images/favicon.ico">
+	<link rel="stylesheet" href="../static/assets/css/main.css" />
+	<link rel="stylesheet" href="../static/assets/css/index.css" />
+	<noscript>
+		<link rel="stylesheet" href="../static/assets/css/noscript.css" />
+	</noscript>
+
+
+
+
+
+</head>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper" class="fade-in">
+
+		<!-- Intro -->
+		<div id="intro">
+			<h1>Personalized Focus Analysis Report</h1>
+			<h2 style="font-weight: bold;font-style: normal;">在线课堂专注度分析解决方案@ZUEL</h2>
+			<p>使用模糊综合评定法融合学习情绪分析模型与关键点特征计算模型<br />
+				情绪分析模型使用SqueezeNet训练卷积神经网络<br />
+				关键点特征计算模型利用Shape_Predictor模型结合面部关键点计算特征<br />
+				得到专注度得分后对专注度低时段的知识点进行补充推荐</p>
+			<ul class="actions">
+				<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+			</ul>
+		</div>
+
+		<!-- Header -->
+		<header id="header">
+			<a class="logo">Focus Analysis</a>
+		</header>
+		<!-- Nav -->
+		<nav id="nav">
+			<ul class="links">
+				<li class="active"><a>专注度曲线</a></li>
+				<li><a onclick="toGeneric()" id="toGeneric">薄弱知识点推荐列表</a></li>
+			</ul>
+
+		</nav>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Featured Post -->
+			<article class="post featured">
+				<header class="major">
+					<span class="date" style="font-weight:bold;">Report</span>
+					<h2><a id="facefocus" data-focus="{{focus}}" data-time="{{time}}">专注度曲线分析</a></h2>
+
+					<div id="echarts" style="min-width:700px;height:400px"></div>
+
+
+				</header>
+			</article>
+
+
+
+		</div>
+
+		<!-- Copyright -->
+		<div id="copyright">
+			<ul>
+				<li>&copy; Untitled</li>
+				<li>Design: <a>Face Focus</a></li>
+			</ul>
+		</div>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../static/assets/js/jquery.min.js"></script>
+	<script src="../static/assets/js/jquery.scrollex.min.js"></script>
+	<script src="../static/assets/js/jquery.scrolly.min.js"></script>
+	<script src="../static/assets/js/browser.min.js"></script>
+	<script src="../static/assets/js/breakpoints.min.js"></script>
+	<script src="../static/assets/js/util.js"></script>
+	<script src="../static/assets/js/main.js"></script>
+	<script src="../static/assets/js/echarts.min.js"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+			var focus = $('#facefocus').data('focus');
+			var time = $('#facefocus').data('time');
+			// 将列表样式的字符串真正变为列表
+			time = eval(time)
+			console.log(focus);
+			console.log(time);
+			console.log(typeof(focus));
+			console.log(typeof(time));
+
+			// 基于准备好的dom，初始化echarts实例
+			var chartDom = document.getElementById('echarts');
+			var myChart = echarts.init(chartDom);
+			var option;
+
+			// var time = [
+			// 	"05-14 9:24:12", "05-14 9:24:13", "05-14 9:24:14", "05-14 9:24:15", "05-14 9:24:16", "05-14 9:24:17", "05-14 9:24:18", "05-14 9:24:19", "05-14 9:24:20", "05-14 9:24:21",
+			// 	"05-14 9:24:23", "05-14 9:24:24", "05-14 9:24:25", "05-14 9:24:26", "05-14 9:24:27", "05-14 9:24:28", "05-14 9:24:25", "05-14 9:24:26", "05-14 9:24:27", "05-14 9:24:28",
+			// 	"05-14 9:24:29", "05-14 9:24:30", "05-14 9:24:31", "05-14 9:24:32", "05-14 9:24:33", "05-14 9:24:34", "05-14 9:24:35", "05-14 9:24:36", "05-14 9:24:37", "05-14 9:24:38",
+			// 	"05-14 9:24:39", "05-14 9:24:40", "05-14 9:24:41", "05-14 9:24:42", "05-14 9:24:43", "05-14 9:24:44", "05-14 9:24:45", "05-14 9:24:46", "05-14 9:24:47", "05-14 9:24:48",
+			// 	"05-14 9:24:49", "05-14 9:24:50", "05-14 9:24:51", "05-14 9:24:52", "05-14 9:24:53", "05-14 9:24:54", "05-14 9:24:55", "05-14 9:24:56", "05-14 9:24:57", "05-14 9:24:58",
+			// 	"05-14 9:24:59", "05-14 9:25:00",
+			// ];
+
+
+              //  [
+				//'插入类排序', '插入类排序', '插入类排序', '插入类排序', '插入类排序', '插入类排序', '插入类排序',
+				//'插入类排序', '插入类排序', '插入类排序', '插入类排序', '插入类排序', '插入类排序', '插入类排序', '插入类排序', '插入类排序', '插入类排序',
+				//'插入类排序', '插入类排序', '插入类排序', '插入类排序', '插入类排序', '插入类排序', '插入类排序', '插入类排序', '插入类排序', '插入类排序',
+				//'插入类排序', '交叉类排序', '交叉类排序', '交叉类排序', '交叉类排序', '交叉类排序', '交叉类排序', '交叉类排序', '交叉类排序', '交叉类排序',
+				//'交叉类排序', '交叉类排序', '交叉类排序', '交叉类排序', '交叉类排序', '交叉类排序', '交叉类排序', '交叉类排序', '交叉类排序', '交叉类排序',
+				//'交叉类排序', '交叉类排序'
+			//];
+            //'贪心法'
+//'任务安排问题'
+
+            var knowledage = ['贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',      '贪心算法',        '贪心算法',       '贪心算法'    ,   '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法'    ,   '贪心算法',       '贪心算法'    ,   '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法'    ,   '贪心算法',       '贪心算法'     ,  '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法',       '贪心算法'    ,   '贪心算法',       '贪心算法'      , '贪心算法',     '贪心算法',         '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题',   '任务安排问题']
+			console.log(focus)
+
+			//var focus = [ 
+			// 	0.82196, 0.92196, 0.81196, 0.86, 0.82196, 0.82196, 0.73,0.68,  0.92, 0.130,
+			// 	0.245, 0.139, 0.115, 0.111, 0.309, 0.206, 0.137, 0.128, 0.85, 0.94, 
+			// 	0.71, 0.106, 0.84, 0.93,0.85, 0.73, 0.83, 0.125, 0.107, 0.82, 
+			// 	0.44, 0.72, 0.106, 0.107, 0.66, 0.91, 0.92,0.113, 0.107, 0.131, 
+			// 	0.111,0.64, 0.69, 0.88, 0.77,0.83, 0.111, 0.57,0.55, 0.60,
+			// 	0.78,0.97
+			// ];
+
+
+			var data = [["05-14 9:12  算法定义", 0.82196], ["05-14 9:13 算法定义", 0.92196], ["05-14 9:14 算法定义", 0.81196], ["05-14 9:15 算法定义", 0.86], ["05-14 9:16 算法定义", 0.82196],
+			["05-14 9:24:17 算法定义", 0.82196], ["05-14 9:24:18 算法定义", 0.73], ["05-14 9:24:19 算法定义", 0.68], ["05-14 9:24:20 算法定义", 0.92], ["05-14 9:24:21 算法定义", 0.130], ["05-14 9:24:22 算法定义", 0.245],
+			["05-14 9:24:23 算法内涵", 0.139], ["05-14 9:24:24 算法内涵", 0.115], ["05-14 9:24:25 算法内涵", 0.111], ["05-14 9:24:26 算法内涵", 0.309], ["05-14 9:24:27 算法内涵", 0.206], ["05-14 9:24:28 算法内涵", 0.137],
+			["05-14 9:24:29 算法内涵", 0.128], ["05-14 9:24:30 算法内涵", 0.85], ["05-14 9:24:31 算法内涵", 0.94], ["05-14 9:24:32 算法内涵", 0.71], ["05-14 9:24:33 算法内涵", 0.106], ["05-14 9:24:34 算法内涵", 0.84],
+			["05-14 9:24:35 算法例题", 0.93], ["05-14 9:24:36 算法例题", 0.85], ["05-14 9:24:37 算法例题", 0.73], ["05-14 9:24:38 算法例题", 0.83], ["05-14 9:24:39 算法例题", 0.125], ["05-14 9:24:40 算法例题", 0.107],
+			["05-14 9:24:41 算法例题", 0.82], ["05-14 9:24:42 算法例题", 0.44], ["05-14 9:24:43 算法例题", 0.72], ["05-14 9:24:44 算法例题", 0.106], ["05-14 9:24:45 算法例题", 0.107], ["05-14 9:24:46 算法例题", 0.66],
+			["05-14 9:24:47 动态规划思想", 0.91], ["05-14 9:24:48 动态规划思想", 0.92], ["05-14 9:24:49 动态规划思想", 0.113], ["05-14 9:24:50 动态规划思想", 0.107], ["05-14 9:24:51 动态规划思想", 0.131], ["05-14 9:24:52 动态规划思想", 0.111],
+			["05-14 9:24:53 动态规划思想", 0.64], ["05-14 9:24:54 动态规划思想", 0.69], ["05-14 9:24:55 动态规划思想", 0.88], ["05-14 9:24:56 动态规划思想", 0.77], ["05-14 9:24:57 动态规划思想", 0.83], ["05-14 9:24:58 动态规划思想", 0.111],
+			["05-14 9:24:59 动态规划例题", 0.57], ["05-14 9:25:00 动态规划例题", 0.55], ["05-14 9:25:01 动态规划例题", 0.60]];
+
+
+			var XList = [] //横轴
+
+			for (var i = 0; i < time.length; i++) {
+				str = time[i] + ' ' + knowledage[i]
+				XList.push(str)
+
+			}
+			console.log(XList)
+
+			// ！！阈值
+			var threshold = 0.7
+
+			var dateList = data.map(function (item) {
+				return item[0];
+			});
+			var valueList = data.map(function (item) {
+				return item[1];
+			});
+
+			var weak_knowledage = []
+
+			for (var i = 0; i < focus.length; i++) {
+				if (focus[i] < threshold) {
+					var weak_know = knowledage[i]
+					if (weak_knowledage.indexOf(weak_know) == -1) {//薄弱知识点列表中还没有该知识
+						weak_knowledage.push(weak_know)
+					}
+
+				}
+			}
+			console.log(weak_knowledage)
+
+			option = {
+
+				// Make gradient line here
+				visualMap: [{
+					show: true,
+					// type: 'piecewise',
+					type: 'continuous',
+					//所对应的序列坐标
+					seriesIndex: 0,
+					min: 0,
+					max: 1,
+
+				}
+
+				],
+
+				animationDuration: 5000,
+				animationEasing: "cubicInOut",
+				title: [
+					{
+						// left: 'center',
+						// text: 'Gradient along the y axis'
+					}
+
+				],
+
+				// 坐标轴提示框
+				tooltip: {
+					trigger: 'axis',
+					// 设置提示框是坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。
+					show: true,
+				},
+				xAxis: [{
+					data: XList
+				}
+
+				],
+				yAxis: [{
+				}
+
+				],
+
+				series: [{
+					type: 'line',
+					name: '专注度值',
+					showSymbol: false,
+					smooth: 0.6,
+					symbol: 'none',
+					lineStyle: {
+						width: 5
+					},
+
+					markArea: {
+						label: {
+							show: true,
+							// position:'inside',
+							fontWeight: 'bold',
+							fontSize: 20,
+						},
+						itemStyle: {
+							color: 'rgba(225,255,255,0.7)',
+							// borderType = 'dashed'
+						},
+						data: [
+							[{
+								name: '专注度薄弱区',
+								yAxis: 0
+							}, {
+								yAxis: threshold
+							}]
+
+						],
+
+					},
+					data: focus
+				}
+
+				]
+			};
+
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+            if (weak_knowledage.length == 0){
+                weak_knowledage.push('交换类排序')
+                weak_knowledage.push('选择类排序')
+            }else if(weak_knowledage.length == 1){
+                weak_knowledage.push('选择类排序')
+            }else{}
+			$('#toGeneric').click(function () {
+				window.location.href = "/generic?weak_knowledage=" + weak_knowledage;
+			})
+
+
+		});
+
+
+
+
+	</script>
+</body>
+
+</html>
